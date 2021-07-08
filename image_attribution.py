@@ -173,7 +173,9 @@ for epoch in range(epochs):
         
             fpr1, tpr1, thresholds1 = metrics.roc_curve(all_y_test, np.asarray(all_scores.cpu()), pos_label=1)
             print("testing accuracy is:", accuracy_score(all_y_test,np.asarray(all_y_pred_test.cpu())))
-        itr += 1
         count+=1
+    print(itr)
+    itr += 1
+
         
         

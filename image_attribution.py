@@ -156,23 +156,23 @@ for epoch in range(epochs):
         all_y.append(np.asarray(labels))
        
         itr+=32
-        if( float(itr%128000)==0.0):
-            for batch_idx_test, (inputs_test,labels_test) in enumerate(test_loader):
-        
-                out,loss,loss1,loss2,loss3,loss4,loss5, out_orig,features,residual,pred,scores=test(Variable(torch.FloatTensor(inputs_test)),Variable(torch.LongTensor(labels_test)))
-                
-                if flag1==0:
-                    all_y_test=labels_test
-                    all_y_pred_test=pred.detach()
-                    all_scores=scores.detach()
-                    flag1=1
+        # if( float(itr%128000)==0.0):
+        for batch_idx_test, (inputs_test,labels_test) in enumerate(test_loader):
+    
+            out,loss,loss1,loss2,loss3,loss4,loss5, out_orig,features,residual,pred,scores=test(Variable(torch.FloatTensor(inputs_test)),Variable(torch.LongTensor(labels_test)))
+            
+            if flag1==0:
+                all_y_test=labels_test
+                all_y_pred_test=pred.detach()
+                all_scores=scores.detach()
+                flag1=1
 
-                else:
-                    all_y_pred_test=torch.cat([all_y_pred_test,pred.detach()], dim=0)
-                    all_y_test=torch.cat([all_y_test,labels_test], dim=0)
-                    all_scores=torch.cat([all_scores,scores], dim=0)
-            fpr1, tpr1, thresholds1 = metrics.roc_curve(all_y_test, np.asarray(all_scores.cpu()), pos_label=1)
-            print("testing accuracy is:", accuracy_score(all_y_test,np.asarray(all_y_pred_test.cpu())))
+            else:
+                all_y_pred_test=torch.cat([all_y_pred_test,pred.detach()], dim=0)
+                all_y_test=torch.cat([all_y_test,labels_test], dim=0)
+                all_scores=torch.cat([all_scores,scores], dim=0)
+        fpr1, tpr1, thresholds1 = metrics.roc_curve(all_y_test, np.asarray(all_scores.cpu()), pos_label=1)
+        print("testing accuracy is:", accuracy_score(all_y_test,np.asarray(all_y_pred_test.cpu())))
         count+=1
         
         

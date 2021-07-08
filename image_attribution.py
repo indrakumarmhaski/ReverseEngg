@@ -83,11 +83,11 @@ state = {
 }
 
 
-state1 = torch.load(model_dir)
-optimizer.load_state_dict(state1['optimizer_1'])
-model.load_state_dict(state1['state_dict_cnn'])
-optimizer_2.load_state_dict(state1['optimizer_2'])
-model_2.load_state_dict(state1['state_dict_class'])
+# state1 = torch.load(model_dir)
+# optimizer.load_state_dict(state1['optimizer_1'])
+# model.load_state_dict(state1['state_dict_cnn'])
+# optimizer_2.load_state_dict(state1['optimizer_2'])
+# model_2.load_state_dict(state1['state_dict_class'])
 
 
 def train(batch, labels):

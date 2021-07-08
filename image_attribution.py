@@ -141,7 +141,7 @@ print(len(train_set))
 print(len(test_set))
 print(train_set.class_to_idx)
 print(test_set.class_to_idx)
-epochs=100
+epochs=1001
 
 
 for epoch in range(epochs):
